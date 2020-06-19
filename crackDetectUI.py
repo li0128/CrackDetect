@@ -28,14 +28,22 @@ ent = Entry(frame, width=50, textvariable=v1).pack(fill=X, side=LEFT)  # x方向
 ent = Entry(frame_1, width=50, textvariable=v2).pack(fill=X, side=LEFT)  # x方向填充,靠左
 
 
+def toWindowsPath(linux_path):
+    if linux_path.find('/'):
+        list = linux_path.split('/')
+        winPath = '\\'.join(list)
+        return winPath
+
+    return linux_path
+
 def inputDirectoryOpen():
-    input_dir = askdirectory()
+    input_dir = toWindowsPath(askdirectory())
     if input_dir:
         v1.set(input_dir)
 
 
 def outputDirectoryOpen():
-    output_dir = askdirectory()
+    output_dir = toWindowsPath(askdirectory())
     if output_dir:
         v2.set(output_dir)
 
@@ -60,10 +68,7 @@ def count_images(dir_path):
 def process_images(input_dir, output_dir, pb, total, count):
     dir_files = os.listdir(input_dir)  # 得到该文件夹下所有的文件
     for file in dir_files:
-        print("input_dir:   " + input_dir)
-        print("file:    " + file)
-        file_path = input_dir + "/" + file  # os.path.join(input_dir, file)  # 路径拼接成绝对路径
-        print("file_path:   " + file_path)
+        file_path = os.path.join(input_dir, file)  # 路径拼接成绝对路径
         if os.path.isfile(file_path):
             if (file_path.lower().endswith(
                     ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):

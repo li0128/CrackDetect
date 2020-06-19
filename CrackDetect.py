@@ -28,7 +28,7 @@ def non_max_suppression(data, win):
 
 def crackDetect(f):
     # start calulcation
-    gray_image = cv2.imread(f,cv2.IMREAD_GRAYSCALE)
+    gray_image = cv2.imdecode(np.fromfile(f,dtype=np.uint8),cv2.IMREAD_GRAYSCALE)
 
     #cv2.imshow(gray_image)
 
