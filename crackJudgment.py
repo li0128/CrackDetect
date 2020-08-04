@@ -22,12 +22,12 @@ print("area:    ", area)
 min = 100
 max = 1000
 if (area < min):
-    shutil.copy(filepath, "without_cave/" + filename)
+    shutil.copy(filepath, "without_cave")
 elif (area > max):
     print("I am here !")
-    shutil.copy(filepath, "with_cave" )
+    shutil.copy(filepath, "with_cave")
 else:
-    shutil.copy(filepath, "unknow/" + filename)
+    shutil.copy(filepath, "unknow")
 
 print(thresh)
 cv2.imshow("bin", thresh)
